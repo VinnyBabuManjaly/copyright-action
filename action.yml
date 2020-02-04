@@ -1,0 +1,6 @@
+name: "Insert Copyright"
+description: "Insert copyright to files in directory"
+author: "Vinny"
+runs:
+  using: "docker"
+  image: "Dockerfile"
