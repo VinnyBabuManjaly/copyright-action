@@ -3,25 +3,17 @@
 # Code to insert copyright to the required files
 
 import os
-# import json
 
 
 class InsertCopyRight:
 
     def __init__(self):
         try:
+            # Reading input from yaml file in .github/workflows of the working repository
             self.data = {}
-            # self.data["copyright_string"] = "copyright\n"
-            # self.data["path"] = "test"
-            # self.data["file_type"] = [".py", ".txt"]
-
             self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"]
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
-
-            print("copyright_string: ", self.data["copyright_string"])
-            print("path: ", self.data["path"])
-            print("file_type: ", self.data["file_type"])
 
         except Exception as e:
             print("Exception in init function: ", e)
@@ -33,8 +25,10 @@ class InsertCopyRight:
             for _root, _dir, _files in os.walk(self.data["path"]):
                 for _filename in _files:
                     # Checking in filename, for file extensions already specified
-                    for _length in range(0, len(self.data["file_type"])):
-                        if self.data["file_type"][_length] in _filename:
+                    for file_type in self.data["file_type"]:
+                        if file_type in _filename:
+                    #for _length in range(0, len(self.data["file_type"])):
+                    #    if self.data["file_type"][_length] in _filename:
                             # Appending to the list "files", all the files to which copyright have to be merged
                             files.append(os.path.join(_root, _filename))
             return files
@@ -48,7 +42,7 @@ class InsertCopyRight:
                 file = open(_file, "r+")
                 content = file.readlines()
 
-                # Checking if the file is empty and if not empty, whether copyright exist
+                # Checking if the file is empty and if not empty, whether copyright exists
                 if not content:    # When the file is empty
                     print(_file, "is an empty file")
 
@@ -67,13 +61,10 @@ class InsertCopyRight:
     def copyright_check(self, content):
         try:
             # To handle multi line copyright extracting copyright string to a list
-            print("copyright_string: ", self.data["copyright_string"])
             copyright_list = self.data["copyright_string"].split('\\n')
-            print("copyright_list: ", copyright_list)
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
                 if content[i] == copyright_list[i] + '\\n':
-                    print("content: ", content[i])
                     _value = True
                 else:  # On line where comparison fails, returns False value to content_check function to add copyright
                     return False
@@ -85,7 +76,6 @@ class InsertCopyRight:
         try:
             # Inserting copyright string to the beginning of content variable
             copyright_string = self.data["copyright_string"].replace('\\n','\n')
-            print("Replaced copyright_string: ", copyright_string)
             content.insert(0, copyright_string)
             # Rewriting contents with copyright to file
             file.seek(0)
