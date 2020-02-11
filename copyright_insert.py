@@ -19,6 +19,10 @@ class InsertCopyRight:
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"]
 
+            print("copyright_string: ", self.data["copyright_string"])
+            print("path: ", self.data["path"])
+            print("file_type: ", self.data["file_type"])
+
             # Reading data from config file
             # with open('config.json') as file:
             #     self.data = json.load(file)
