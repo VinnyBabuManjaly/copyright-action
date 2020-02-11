@@ -17,7 +17,7 @@ class InsertCopyRight:
 
             self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"]
             self.data["path"] = os.environ["INPUT_FILEPATH"]
-            self.data["file_type"] = os.environ["INPUT_FILETYPE"]
+            self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
 
             # print("copyright_string: ", self.data["copyright_string"])
             # print("path: ", self.data["path"])
@@ -73,7 +73,7 @@ class InsertCopyRight:
         try:
             # To handle multi line copyright extracting copyright string to a list
             print("copyright_string: ", self.data["copyright_string"])
-            copyright_list = self.data["copyright_string"].split('\n')
+            copyright_list = self.data["copyright_string"].split('\\n')
             print("copyright_list: ", copyright_list)
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
