@@ -21,7 +21,7 @@ class InsertCopyRight:
 
             print("copyright_string: ", self.data["copyright_string"])
             # print("path: ", self.data["path"])
-            # print("file_type: ", self.data["file_type"])
+            print("file_type: ", self.data["file_type"])
 
             # Reading data from config file
             # with open('config.json') as file:
@@ -40,10 +40,10 @@ class InsertCopyRight:
                 for _filename in _files:
                     print("filename: ", _filename)
                     # Checking in filename, for file extensions already specified
-                    for file_type in self.data["file_type"]:
-                        if file_type in _filename:
+                    for _length in range(0, len(self.data["file_type"])):
+                        if self.data["file_type"][_length] in _filename:
                             # Appending to the list "files", all the files to which copyright have to be merged
-                            print(_root, _filename)
+                            # print(_root, _filename)
                             files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
