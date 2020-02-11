@@ -19,7 +19,7 @@ class InsertCopyRight:
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"]
 
-            # print("copyright_string: ", self.data["copyright_string"])
+            print("copyright_string: ", self.data["copyright_string"])
             # print("path: ", self.data["path"])
             # print("file_type: ", self.data["file_type"])
 
@@ -101,6 +101,7 @@ def main():
     try:
         obj = InsertCopyRight()         # Instantiating object 'obj' for class InsertCopyRight
         files = obj.listing_files()     # Function to get the files into which copyright has to be added
+        print("files: ", files)
         if files:
             obj.content_check(files)    # Checking if copyright already exists and if not add respectively
     except Exception as e:
