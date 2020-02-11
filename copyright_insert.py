@@ -68,11 +68,11 @@ class InsertCopyRight:
         try:
             # To handle multi line copyright extracting copyright string to a list
             print("copyright_string: ", self.data["copyright_string"])
-            copyright_list = self.data["copyright_string"].split('\\r\\n')
+            copyright_list = self.data["copyright_string"].split('\\n')
             print("copyright_list: ", copyright_list)
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
-                if content[i] == copyright_list[i] + '\\r\\n':
+                if content[i] == copyright_list[i] + '\\n':
                     print("content: ", content[i])
                     _value = True
                 else:  # On line where comparison fails, returns False value to content_check function to add copyright
@@ -84,6 +84,7 @@ class InsertCopyRight:
     def insert_copyright(self, content, file):
         try:
             # Inserting copyright string to the beginning of content variable
+            self.data["copyright_string"] = 'abcd\nefgh\n'
             content.insert(0, self.data["copyright_string"])
             # Rewriting contents with copyright to file
             file.seek(0)
