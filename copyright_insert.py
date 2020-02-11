@@ -11,7 +11,7 @@ class InsertCopyRight:
         try:
             # Reading input from yaml file in .github/workflows of the working repository
             self.data = {}
-            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"]
+            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].replace('\\n','\n')
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
 
@@ -61,10 +61,10 @@ class InsertCopyRight:
     def copyright_check(self, content):
         try:
             # To handle multi line copyright extracting copyright string to a list
-            copyright_list = self.data["copyright_string"].split('\\n')
+            copyright_list = self.data["copyright_string"].split('\n')
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
-                if content[i] == copyright_list[i] + '\\n':
+                if content[i] == copyright_list[i] + '\n':
                     _value = True
                 else:  # On line where comparison fails, returns False value to content_check function to add copyright
                     return False
@@ -75,8 +75,8 @@ class InsertCopyRight:
     def insert_copyright(self, content, file):
         try:
             # Inserting copyright string to the beginning of content variable
-            copyright_string = self.data["copyright_string"].replace('\\n','\n')
-            content.insert(0, copyright_string)
+            # copyright_string = self.data["copyright_string"].replace('\\n','\n')
+            content.insert(0, self.data["copyright_string"])
             # Rewriting contents with copyright to file
             file.seek(0)
             file.writelines(content)
@@ -89,7 +89,6 @@ def main():
     try:
         obj = InsertCopyRight()         # Instantiating object 'obj' for class InsertCopyRight
         files = obj.listing_files()     # Function to get the files into which copyright has to be added
-        print("files: ", files)
         if files:
             obj.content_check(files)    # Checking if copyright already exists and if not add respectively
     except Exception as e:
