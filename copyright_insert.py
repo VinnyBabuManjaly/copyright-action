@@ -40,7 +40,7 @@ class InsertCopyRight:
                 for _filename in _files:
                     # Checking in filename, for file extensions already specified
                     for _length in range(0, len(self.data["file_type"])):
-                        print("length: ", _length, ", file_type: ", self.data["file_type"][_length]", filename: ", _filename)
+                        print("length: ", _length, ", file_type: ", self.data["file_type"][_length], ", filename: ", _filename)
                         if self.data["file_type"][_length] in _filename:
                             # Appending to the list "files", all the files to which copyright have to be merged
                             print(_root, _filename)
