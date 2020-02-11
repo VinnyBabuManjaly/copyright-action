@@ -15,13 +15,13 @@ class InsertCopyRight:
             # self.data["path"] = "test"
             # self.data["file_type"] = [".py", ".txt"]
 
-            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"]
+            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].split('\n')
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
 
-            print("copyright_string: ", self.data["copyright_string"])
+            # print("copyright_string: ", self.data["copyright_string"])
             # print("path: ", self.data["path"])
-            print("file_type: ", self.data["file_type"])
+            # print("file_type: ", self.data["file_type"])
 
             # Reading data from config file
             # with open('config.json') as file:
@@ -36,14 +36,11 @@ class InsertCopyRight:
             # Getting all the required files from the directory
             files = []
             for _root, _dir, _files in os.walk(self.data["path"]):
-                print("files: ", _files)
                 for _filename in _files:
                     # Checking in filename, for file extensions already specified
                     for _length in range(0, len(self.data["file_type"])):
-                        print("length: ", _length, ", file_type: ", self.data["file_type"][_length], ", filename: ", _filename)
                         if self.data["file_type"][_length] in _filename:
                             # Appending to the list "files", all the files to which copyright have to be merged
-                            print(_root, _filename)
                             files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
@@ -62,7 +59,7 @@ class InsertCopyRight:
 
                 if content:        # When the file is not empty
                     # Handling multi line copyright
-                    if self.copyright_check(content):  # String already present in file
+                    if self.copyright_check(content):   # String already present in file
                         print("License string already exists in ", _file)
                     else:                               # String absent in file
                         print("Adding license string as not present in ", _file)
@@ -75,7 +72,8 @@ class InsertCopyRight:
     def copyright_check(self, content):
         try:
             # To handle multi line copyright extracting copyright string to a list
-            copyright_list = self.data["copyright_string"].split('\n')
+            print("copyright_string: ", self.data["copyright_string"])
+            copyright_list = self.data["copyright_string"]
             print("copyright_list: ", copyright_list)
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
