@@ -19,17 +19,12 @@ class InsertCopyRight:
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
 
-            # print("copyright_string: ", self.data["copyright_string"])
-            # print("path: ", self.data["path"])
+            print("copyright_string: ", self.data["copyright_string"])
+            print("path: ", self.data["path"])
             print("file_type: ", self.data["file_type"])
 
-            # Reading data from config file
-            # with open('config.json') as file:
-            #     self.data = json.load(file)
-        except Exception as e:
+            except Exception as e:
             print("Exception in init function: ", e)
-        # finally:
-            # file.close()
 
     def listing_files(self):
         try:
