@@ -15,7 +15,7 @@ class InsertCopyRight:
             # self.data["path"] = "test"
             # self.data["file_type"] = [".py", ".txt"]
 
-            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].split('\n')
+            self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].split('\\')
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
 
