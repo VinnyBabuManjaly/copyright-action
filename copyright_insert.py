@@ -21,7 +21,7 @@ class InsertCopyRight:
 
             # print("copyright_string: ", self.data["copyright_string"])
             # print("path: ", self.data["path"])
-            # print("file_type: ", self.data["file_type"])
+            print("file_type: ", self.data["file_type"])
 
             # Reading data from config file
             # with open('config.json') as file:
