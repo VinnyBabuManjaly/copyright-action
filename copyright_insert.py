@@ -23,7 +23,7 @@ class InsertCopyRight:
             print("path: ", self.data["path"])
             print("file_type: ", self.data["file_type"])
 
-            except Exception as e:
+        except Exception as e:
             print("Exception in init function: ", e)
 
     def listing_files(self):
