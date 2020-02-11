@@ -43,6 +43,7 @@ class InsertCopyRight:
                     for file_type in self.data["file_type"]:
                         if file_type in _filename:
                             # Appending to the list "files", all the files to which copyright have to be merged
+                            print(_root, _filename)
                             files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
