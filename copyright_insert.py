@@ -19,9 +19,9 @@ class InsertCopyRight:
             self.data["path"] = os.environ["INPUT_FILEPATH"]
             self.data["file_type"] = os.environ["INPUT_FILETYPE"]
 
-            print("copyright_string: ", self.data["copyright_string"])
-            print("path: ", self.data["path"])
-            print("file_type: ", self.data["file_type"])
+            # print("copyright_string: ", self.data["copyright_string"])
+            # print("path: ", self.data["path"])
+            # print("file_type: ", self.data["file_type"])
 
             # Reading data from config file
             # with open('config.json') as file:
@@ -73,9 +73,11 @@ class InsertCopyRight:
         try:
             # To handle multi line copyright extracting copyright string to a list
             copyright_list = self.data["copyright_string"].split('\n')
+            print("copyright_list: ", copyright_list)
             for i in range(0, len(copyright_list) - 1):
                 # Comparing copyright with contents line by line, considering number of lines the copyright is spread
                 if content[i] == copyright_list[i] + '\n':
+                    print("content: ", content[i])
                     _value = True
                 else:  # On line where comparison fails, returns False value to content_check function to add copyright
                     return False
