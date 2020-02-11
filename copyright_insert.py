@@ -36,7 +36,9 @@ class InsertCopyRight:
             # Getting all the required files from the directory
             files = []
             for _root, _dir, _files in os.walk(self.data["path"]):
+                print("files: ", _files)
                 for _filename in _files:
+                    print("filename: ", _filename)
                     # Checking in filename, for file extensions already specified
                     for file_type in self.data["file_type"]:
                         if file_type in _filename:
