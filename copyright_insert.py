@@ -84,8 +84,9 @@ class InsertCopyRight:
     def insert_copyright(self, content, file):
         try:
             # Inserting copyright string to the beginning of content variable
-            self.data["copyright_string"] = 'abcd\nefgh\n'
-            content.insert(0, self.data["copyright_string"])
+            copyright_string = self.data["copyright_string"].replace('//n','/n')
+            print("Replaced copyright_string: ", copyright_string)
+            content.insert(0, copyright_string)
             # Rewriting contents with copyright to file
             file.seek(0)
             file.writelines(content)
