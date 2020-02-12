@@ -105,7 +105,7 @@ def main():
     '''
     Instantiating object 'obj' for class InsertCopyRight
     Function to get the files into which copyright has to be added
-    Checking if copyright already exists and if not add respectively
+    Checking if copyright already exists and if not add respectively.
     '''
     try:
         obj = InsertCopyRight()
