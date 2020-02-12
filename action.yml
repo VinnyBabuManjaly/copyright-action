@@ -1,6 +1,6 @@
 name: "Insert Copyright"
 description: "Insert copyright to files in directory"
-author: "Vinny"
+author: "Vinny Babu Manjaly"
 inputs:
   # Required
   CopyrightString:
