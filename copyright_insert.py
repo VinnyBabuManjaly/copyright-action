@@ -110,6 +110,7 @@ def main():
     try:
         obj = InsertCopyRight()
         files = obj.listing_files()
+        print(files)
         if files:
             obj.content_check(files)
     except Exception as e:
