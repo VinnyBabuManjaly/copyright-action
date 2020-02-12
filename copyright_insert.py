@@ -2,7 +2,7 @@
     File name: copyright_insert.py
     Author: Vinny Babu Manjaly
     Date created: 2/2/2020
-    Date last modified: 2/11/2020
+    Date last modified: 2/12/2020
     Python Version: 3.7
 '''
 
@@ -18,8 +18,9 @@ class InsertCopyRight:
         try:
             self.data = {}
             self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].replace('\\n','\n')
-            self.data["path"] = os.environ["INPUT_FILEPATH"]
-            self.data["file_type"] = os.environ["INPUT_FILETYPE"].split(',')
+            self.data["file_path"] = os.environ["INPUT_FILEPATH"].replace(' ', '').split(',')
+            self.data["file_type"] = os.environ["INPUT_FILETYPE"].replace(' ', '').split(',')
+            self.data["ignore_file_path"] = os.environ["INPUT_IGNOREFILEPATH"].replace(' ', '').split(',')
         except Exception as e:
             print("Exception in init function: ", e)
 
@@ -32,11 +33,13 @@ class InsertCopyRight:
         '''
         try:
             files = []
-            for _root, _dir, _files in os.walk(self.data["path"]):
-                for _filename in _files:
-                    for file_type in self.data["file_type"]:
-                        if file_type in _filename:
-                            files.append(os.path.join(_root, _filename))
+            for _path in self.data["file_path"]:
+                for _root, _dir, _files in os.walk(_path):
+                    if _root not in self.data["ignore_file_path"]:
+                        for _filename in _files:
+                            for file_type in self.data["file_type"]:
+                                if file_type in _filename:
+                                    files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
             print("Exception in listing_files function: ", e)

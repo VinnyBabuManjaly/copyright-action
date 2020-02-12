@@ -1,19 +1,24 @@
-name: "Insert Copyright"
-description: "Insert copyright to files in directory"
+name: "Insert Copyright notice"
+description: "Insert copyright notice to files in directory"
 author: "Vinny Babu Manjaly"
 inputs:
   # Required
   CopyrightString:
-    description: String to be added as Copyright(multiline copyrights are possible)
+    description: String to be added as Copyright notice(multiline copyrights are possible)
     requried: true
 
   FilePath:
-    description: Path in which copyright has to be added to the files
+    description: Path in which copyright notice has to be added to the files
     requried: true
 
   FileType:
-    description: Type of files(extension) for which copyright has to be added in the file path given
+    description: Type of files(extension) for which copyright notice has to be added in the given file path
     requried: true
+    
+  # Optional
+  IgnoreFilePath:
+    description: Path ignored without adding copyright notice
+    requried: false
 runs:
   using: "docker"
   image: "Dockerfile"
