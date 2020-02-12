@@ -16,18 +16,10 @@ class InsertCopyRight:
         '''
         try:
             self.data = {}
-<<<<<<< HEAD
             self.data["copyright_string"] = os.environ["INPUT_COPYRIGHTSTRING"].replace('\\n','\n')
             self.data["file_path"] = os.environ["INPUT_FILEPATH"].replace(' ', '').split(',')
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].replace(' ', '').split(',')
             self.data["ignore_file_path"] = os.environ["INPUT_IGNOREFILEPATH"].replace(' ', '').split(',')
-=======
-            self.data['copyright_string'] = os.environ['INPUT_COPYRIGHTSTRING'].replace(
-                '\\n', '\n',
-            )
-            self.data['path'] = os.environ['INPUT_FILEPATH']
-            self.data['file_type'] = os.environ['INPUT_FILETYPE'].split(',')
->>>>>>> 9bc11d9cd9f532dd441fa2de1969415c2f7b64ae
         except Exception as e:
             print('Exception in init function: ', e)
 
@@ -40,7 +32,6 @@ class InsertCopyRight:
         '''
         try:
             files = []
-<<<<<<< HEAD
             for _path in self.data["file_path"]:
                 for _root, _dir, _files in os.walk(_path):
                     if _root not in self.data["ignore_file_path"]:
@@ -48,13 +39,6 @@ class InsertCopyRight:
                             for file_type in self.data["file_type"]:
                                 if file_type in _filename:
                                     files.append(os.path.join(_root, _filename))
-=======
-            for _root, _dir, _files in os.walk(self.data['path']):
-                for _filename in _files:
-                    for file_type in self.data['file_type']:
-                        if file_type in _filename:
-                            files.append(os.path.join(_root, _filename))
->>>>>>> 9bc11d9cd9f532dd441fa2de1969415c2f7b64ae
             return files
         except Exception as e:
             print('Exception in listing_files function: ', e)
