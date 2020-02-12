@@ -21,6 +21,11 @@ class InsertCopyRight:
             self.data["file_path"] = os.environ["INPUT_FILEPATH"].replace(' ', '').split(',')
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].replace(' ', '').split(',')
             self.data["ignore_file_path"] = os.environ["INPUT_IGNOREFILEPATH"].replace(' ', '').split(',')
+
+            print("file_path: ", self.data["file_path"])
+            print("ignore_file_path: ", self.data["ignore_file_path"])
+            print("file_path: ", self.data["file_path"])
+            print("ignore_file_path: ", self.data["ignore_file_path"])
         except Exception as e:
             print("Exception in init function: ", e)
 
