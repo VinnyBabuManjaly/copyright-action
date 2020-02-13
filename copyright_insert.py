@@ -36,6 +36,9 @@ class InsertCopyRight:
                 'ignore_file_path: ',
                 os.environ['INPUT_IGNOREFILEPATH'], self.data['ignore_file_path'],
             )
+            if os.environ['INPUT_IGNOREFILEPATH'] is None:
+                self.data['ignore_file_path'] = None
+
         except Exception as e:
             print('Exception in init function: ', e)
 
@@ -51,7 +54,7 @@ class InsertCopyRight:
             _value = False
             for _path in self.data['file_path']:
                 for _root, _dir, _files in os.walk(_path):
-                    if self.data['ignore_file_path'] is not ['']:
+                    if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
                             if _ignore_path not in _root:
                                 _value = False
