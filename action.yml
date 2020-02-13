@@ -7,15 +7,15 @@ inputs:
     description: String to be added as Copyright notice(multiline copyrights are possible)
     requried: true
 
-  FilePath:
-    description: Path in which copyright notice has to be added to the files
-    requried: true
-
   FileType:
     description: Type of files(extension) for which copyright notice has to be added in the given file path
-    requried: true
-    
+    requried: false
+
   # Optional
+  FilePath:
+    description: Path in which copyright notice has to be added to the files
+    requried: false
+
   IgnoreFilePath:
     description: Path ignored without adding copyright notice
     requried: false
