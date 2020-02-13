@@ -41,7 +41,7 @@ class InsertCopyRight:
                     print("_root, _dir, _files : ", _root, _dir, _files)
                     for _ignore_path in self.data["ignore_file_path"]:
                         print("ignore path check: ", _ignore_path.rpartition('/'))
-                        if _ignore_path.rpartition('/')[0] is not _root and _ignore_path.rpartition('/')[2] is not _dir:
+                        if _ignore_path not in _root:
                             _value = False
                         else:
                             print("Ignoring file path ", _ignore_path)
@@ -52,6 +52,30 @@ class InsertCopyRight:
                             for file_type in self.data["file_type"]:
                                 if file_type in _filename:
                                     files.append(os.path.join(_root, _filename))
+
+            # for _path in self.data["file_path"]:
+            #     for _root, _dir, _files in os.walk(_path):
+            #             for _filename in _files:
+            #                 for file_type in self.data["file_type"]:
+            #                     if file_type in _filename:
+            #                         files.append(os.path.join(_root, _filename))
+
+            # for _path in self.data["file_path"]:
+            #     for _root, _dir, _files in os.walk(_path):
+            #         print("_root, _dir, _files : ", _root, _dir, _files)
+            #         for _ignore_path in self.data["ignore_file_path"]:
+            #             print("ignore path check: ", _ignore_path.rpartition('/'))
+            #             if _ignore_path.rpartition('/')[0] is not _root and _ignore_path.rpartition('/')[2] is not _dir:
+            #                 _value = False
+            #             else:
+            #                 print("Ignoring file path ", _ignore_path)
+            #                 _value = True
+            #                 break
+            #         if _value is False:
+            #             for _filename in _files:
+            #                 for file_type in self.data["file_type"]:
+            #                     if file_type in _filename:
+            #                         files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
             print("Exception in listing_files function: ", e)
