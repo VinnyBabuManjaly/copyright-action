@@ -21,9 +21,6 @@ class InsertCopyRight:
             self.data["file_path"] = os.environ["INPUT_FILEPATH"].replace(' ', '').split(',')
             self.data["file_type"] = os.environ["INPUT_FILETYPE"].replace(' ', '').split(',')
             self.data["ignore_file_path"] = os.environ["INPUT_IGNOREFILEPATH"].replace(' ', '').split(',')
-
-            print("file_path: ", self.data["file_path"])
-            print("ignore_file_path: ", self.data["ignore_file_path"])
         except Exception as e:
             print("Exception in init function: ", e)
 
@@ -38,12 +35,11 @@ class InsertCopyRight:
             files = []
             for _path in self.data["file_path"]:
                 for _root, _dir, _files in os.walk(_path):
-                    print("_root : ", _root)
                     for _ignore_path in self.data["ignore_file_path"]:
                         if _ignore_path not in _root:
                             _value = False
                         else:
-                            print("Ignoring file path ", _ignore_path)
+                            print("Ignoring file path ", _root)
                             _value = True
                             break
                     if _value is False:
@@ -51,13 +47,6 @@ class InsertCopyRight:
                             for file_type in self.data["file_type"]:
                                 if file_type in _filename:
                                     files.append(os.path.join(_root, _filename))
-
-            # for _path in self.data["file_path"]:
-            #     for _root, _dir, _files in os.walk(_path):
-            #             for _filename in _files:
-            #                 for file_type in self.data["file_type"]:
-            #                     if file_type in _filename:
-            #                         files.append(os.path.join(_root, _filename))
             return files
         except Exception as e:
             print("Exception in listing_files function: ", e)
@@ -117,7 +106,6 @@ class InsertCopyRight:
             content.insert(0, self.data["copyright_string"])
             file.seek(0)
             file.writelines(content)
-            print("Copyright string added to the file")
         except Exception as e:
             print("Exception in insert_copyright function: ", e)
 
@@ -131,7 +119,7 @@ def main():
     try:
         obj = InsertCopyRight()
         files = obj.listing_files()
-        print(files)
+        print("List of files to be checked for copyright notice:\n", files)
         if files:
             obj.content_check(files)
     except Exception as e:
