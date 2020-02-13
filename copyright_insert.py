@@ -39,8 +39,8 @@ class InsertCopyRight:
             for _path in self.data["file_path"]:
                 for _root, _dir, _files in os.walk(_path):
                     for _ignore_path in self.data["ignore_file_path"]:
-                        print("ignore path check: ", _ignore_path.rpartition('\\'))
-                        if _ignore_path.rpartition('\\')[0] is not _root and _ignore_path.rpartition('\\')[2] is not _dir:
+                        print("ignore path check: ", _ignore_path.rpartition('/'))
+                        if _ignore_path.rpartition('/')[0] is not _root and _ignore_path.rpartition('/')[2] is not _dir:
                             _value = False
                         else:
                             print("Ignoring file path ", _ignore_path)
