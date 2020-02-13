@@ -42,13 +42,13 @@ class InsertCopyRight:
             if os.environ['INPUT_IGNOREFILEPATH'] is None:
                 print('None value')
                 self.data['ignore_file_path'] = None
-            elif os.environ['INPUT_IGNOREFILEPATH'] == '':
+            if os.environ['INPUT_IGNOREFILEPATH'] == '':
                 print('No value in quotes')
-            elif os.environ['INPUT_IGNOREFILEPATH'] == ' ':
+            if os.environ['INPUT_IGNOREFILEPATH'] == ' ':
                 print('One space value')
-            elif not os.environ['INPUT_IGNOREFILEPATH']:
+            if not os.environ['INPUT_IGNOREFILEPATH']:
                 print('Not string')
-            elif not os.environ['INPUT_IGNOREFILEPATH'].strip():
+            if not os.environ['INPUT_IGNOREFILEPATH'].strip():
                 print('Empty String!')
 
         except Exception as e:
