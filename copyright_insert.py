@@ -23,7 +23,7 @@ class InsertCopyRight:
                 ' ', '',
             ).split(',')
             if not os.environ['INPUT_FILEPATH']:
-                self.data['file_path'] = '.'
+                self.data['file_path'] = ['.']
             else:
                 self.data['file_path'] = os.environ['INPUT_FILEPATH'].replace(
                     ' ', '',
