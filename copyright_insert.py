@@ -25,34 +25,15 @@ class InsertCopyRight:
             self.data['file_type'] = os.environ['INPUT_FILETYPE'].replace(
                 ' ', '',
             ).split(',')
-            self.data['ignore_file_path'] = os.environ['INPUT_IGNOREFILEPATH'].replace(
-                ' ', '',
-            ).split(',')
-
-            print(
-                'ignore_file_path: "',
-                os.environ['INPUT_IGNOREFILEPATH'], '"', self.data['ignore_file_path'],
-            )
-            print('Length: ', len(os.environ['INPUT_IGNOREFILEPATH']))
-            print(
-                'Length as string: ', len(
-                    str(os.environ['INPUT_IGNOREFILEPATH']),
-                ),
-            )
-            if os.environ['INPUT_IGNOREFILEPATH'] is None:
-                print('None value')
-                self.data['ignore_file_path'] = None
-            if os.environ['INPUT_IGNOREFILEPATH'] == '':
-                print('No value in quotes')
-            if os.environ['INPUT_IGNOREFILEPATH'] == ' ':
-                print('One space value')
             if not os.environ['INPUT_IGNOREFILEPATH']:
-                print('Not string')
-            if not os.environ['INPUT_IGNOREFILEPATH'].strip():
-                print('Empty String!')
+                self.data['ignore_file_path'] = None
+            else:
+                self.data['ignore_file_path'] = os.environ['INPUT_IGNOREFILEPATH'].replace(
+                    ' ', '',
+                ).split(',')
 
         except Exception as e:
-            print('Exception in init function: ', e)
+            raise e
 
     def listing_files(self):
         '''
@@ -83,7 +64,7 @@ class InsertCopyRight:
                                     )
             return files
         except Exception as e:
-            print('Exception in listing_files function: ', e)
+            raise e
 
     def content_check(self, files):
         '''
@@ -91,8 +72,6 @@ class InsertCopyRight:
         Checking if the file is empty and if not empty, whether copyright exists
         When the file is empty, not writing the copyright string to the file
         When the file is not empty, handling multi line copyright and checking whether its present in the file
-        :param files:
-        :return:
         '''
         try:
             for _file in files:
@@ -109,7 +88,7 @@ class InsertCopyRight:
                         print('Adding license string as not present in ', _file)
                         self.insert_copyright(content, file)
         except Exception as e:
-            print('Exception in content_check function: ', e)
+            raise e
         finally:
             file.close()
 
@@ -119,8 +98,6 @@ class InsertCopyRight:
         Comparing copyright with contents line by line, considering number of lines the copyright is spread
         On line where comparison fails, returns False value to content_check function to add copyright
         As all lines of copyright are matching, returns true value, indicating copyright exists
-        :param content:
-        :return:
         '''
         try:
             copyright_list = self.data['copyright_string'].split('\n')
@@ -131,7 +108,7 @@ class InsertCopyRight:
                     return False
             return True
         except Exception as e:
-            print('Exception in copyright_check function: ', e)
+            raise e
 
     def insert_copyright(self, content, file):
         '''
@@ -143,7 +120,7 @@ class InsertCopyRight:
             file.seek(0)
             file.writelines(content)
         except Exception as e:
-            print('Exception in insert_copyright function: ', e)
+            raise e
 
 
 def main():
@@ -159,7 +136,7 @@ def main():
         if files:
             obj.content_check(files)
     except Exception as e:
-        print('Exception in main function: ', e)
+        raise e
 
 
 if __name__ == '__main__':
