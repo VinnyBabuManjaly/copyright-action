@@ -60,6 +60,10 @@ class InsertCopyRight:
                                 break
                     if _value is False:
                         for _filename in _files:
+
+                            if _filename == 'test_config_entries.py':
+                                print('test: ', _root, _dir, _filename)
+
                             for file_type in self.data['file_type']:
                                 if file_type in _filename:
                                     files.append(
