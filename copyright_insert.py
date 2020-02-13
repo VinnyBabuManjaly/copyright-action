@@ -51,12 +51,15 @@ class InsertCopyRight:
             for _path in self.data['file_path']:
                 print('_path: ', _path)
                 for _root, _dir, _files in os.walk(_path):
-                    print(_root, _dir)
                     if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
-                            if _path == '.' and _ignore_path in _dir:
-                                print('check case: ', _root, _dir)
-                            if _ignore_path not in _root or (_path == '.' and _ignore_path not in _dir):
+                            if _path == '.':
+                                _ignore_path = './' + _ignore_path
+                                print(
+                                    'check case: ', _path,
+                                    _dir, _ignore_path,
+                                )
+                            if _ignore_path not in _root:
                                 _value = False
                             else:
                                 print('Ignoring file path ', _root)
@@ -139,7 +142,7 @@ def main():
     try:
         obj = InsertCopyRight()
         files = obj.listing_files()
-        print('List of files to be checked for copyright notice:\n', files)
+        # print('List of files to be checked for copyright notice:\n', files)
         if files:
             obj.content_check(files)
     except Exception as e:
