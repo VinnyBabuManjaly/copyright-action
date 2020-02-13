@@ -19,12 +19,15 @@ class InsertCopyRight:
             self.data['copyright_string'] = os.environ['INPUT_COPYRIGHTSTRING'].replace(
                 '\\n', '\n',
             )
-            self.data['file_path'] = os.environ['INPUT_FILEPATH'].replace(
-                ' ', '',
-            ).split(',')
             self.data['file_type'] = os.environ['INPUT_FILETYPE'].replace(
                 ' ', '',
             ).split(',')
+            if not os.environ['INPUT_FILEPATH']:
+                self.data['file_path'] = '.'
+            else:
+                self.data['file_path'] = os.environ['INPUT_FILEPATH'].replace(
+                    ' ', '',
+                ).split(',')
             if not os.environ['INPUT_IGNOREFILEPATH']:
                 self.data['ignore_file_path'] = None
             else:
