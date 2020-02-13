@@ -28,16 +28,28 @@ class InsertCopyRight:
             self.data['ignore_file_path'] = os.environ['INPUT_IGNOREFILEPATH'].replace(
                 ' ', '',
             ).split(',')
+
             print(
-                'file_path: ',
-                os.environ['INPUT_FILETYPE'], self.data['file_type'],
+                'ignore_file_path: "',
+                os.environ['INPUT_IGNOREFILEPATH'], '"', self.data['ignore_file_path'],
             )
+            print('Length: ', len(os.environ['INPUT_IGNOREFILEPATH']))
             print(
-                'ignore_file_path: ',
-                os.environ['INPUT_IGNOREFILEPATH'], self.data['ignore_file_path'],
+                'Length as string: ', len(
+                    str(os.environ['INPUT_IGNOREFILEPATH']),
+                ),
             )
             if os.environ['INPUT_IGNOREFILEPATH'] is None:
+                print('None value')
                 self.data['ignore_file_path'] = None
+            elif os.environ['INPUT_IGNOREFILEPATH'] == '':
+                print('No value in quotes')
+            elif os.environ['INPUT_IGNOREFILEPATH'] == ' ':
+                print('One space value')
+            elif not os.environ['INPUT_IGNOREFILEPATH']:
+                print('Not string')
+            elif not os.environ['INPUT_IGNOREFILEPATH'].strip():
+                print('Empty String!')
 
         except Exception as e:
             print('Exception in init function: ', e)
