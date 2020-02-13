@@ -48,16 +48,17 @@ class InsertCopyRight:
         try:
             files = []
             _value = False
+            print('ignore path: ', self.data['ignore_file_path'])
             for _path in self.data['file_path']:
                 for _root, _dir, _files in os.walk(_path):
                     if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
-                            # if _path == '.':
-                            #     _ignore_path = './' + _ignore_path
+                            if _ignore_path.replace('/', '') in _dir:
+                                print('check case: ', _dir)
                             if _ignore_path not in _root:
                                 _value = False
                             else:
-                                print('Ignoring file path ', _root)
+                                # print('Ignoring file path ', _root)
                                 _value = True
                                 break
                     if _value is False:
