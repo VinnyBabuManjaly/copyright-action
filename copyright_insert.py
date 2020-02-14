@@ -60,7 +60,7 @@ class InsertCopyRight:
                             #     )
 
                             if _path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/':
-                                _value = False
+                                _value = True
                                 print(
                                     'yahoo : ', _ignore_path,
                                     _root, _files,
