@@ -53,14 +53,18 @@ class InsertCopyRight:
                     if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
 
-                            if _path == '.' and _ignore_path[-1] == '/' and './'+_ignore_path == _root+'/':
+                            # if _path == '.' and _ignore_path[-1] == '/' and './'+_ignore_path == _root+'/':
+                            #     print(
+                            #         'yahoo : ', _ignore_path,
+                            #         _root, _files,
+                            #     )
+
+                            if _path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/':
+                                _value = False
                                 print(
                                     'yahoo : ', _ignore_path,
                                     _root, _files,
                                 )
-
-                            if _path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/':
-                                _value = False
                                 break
                             elif _ignore_path not in _root:
                                 _value = False
