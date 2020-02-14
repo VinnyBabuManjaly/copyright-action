@@ -56,18 +56,13 @@ class InsertCopyRight:
 
                             # if _ignore_path in (_root + '/'):
                             #     print('check: ', _root, _files, _ignore_path)
-                            # if _ignore_path[-1] == '/' and _ignore_path.rpartition('/')[0] in _root:
-                            #     print(
-                            #         'rpartition: ', _root,
-                            #         _files, _ignore_path,
-                            #     )
+                            if ignore_file_path == 'tests/' and _root == './tests ':
+                                print('check1: ', _root+'/')
+                                if _ignore_path[-1] == '/' and _ignore_path.rpartition('/')[0] in _root:
+                                    print('check2: ', files)
 
                             if _ignore_path not in _root:
                                 _value = False
-                            elif _ignore_path[-1] == '/' and _ignore_path.rpartition('/')[0] in _root:
-                                print('check: ', _root, _files, _ignore_path)
-                                _value = True
-                                break
                             else:
                                 # print('Ignoring file path ', _root)
                                 _value = True
