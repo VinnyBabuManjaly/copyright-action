@@ -51,6 +51,7 @@ class InsertCopyRight:
             print('ignore_file_path: ', self.data['ignore_file_path'])
             for _path in self.data['file_path']:
                 for _root, _dir, _files in os.walk(_path):
+                    print('root: ', _root)
                     if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
 
