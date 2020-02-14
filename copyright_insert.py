@@ -51,13 +51,12 @@ class InsertCopyRight:
             print('ignore_file_path: ', self.data['ignore_file_path'])
             for _path in self.data['file_path']:
                 for _root, _dir, _files in os.walk(_path):
-                    print('root: ', _root)
                     if self.data['ignore_file_path'] is not None:
                         for _ignore_path in self.data['ignore_file_path']:
 
                             # if _ignore_path in (_root + '/'):
                             #     print('check: ', _root, _files, _ignore_path)
-                            if _ignore_path == 'script/' and _root == './script ':
+                            if _ignore_path == 'script/' and _root == './script':
                                 print(
                                     'check1: ', _ignore_path,
                                     _root, _root+'/',
@@ -73,10 +72,6 @@ class InsertCopyRight:
                                 break
                     if _value is False:
                         for _filename in _files:
-
-                            if _filename == 'test_config_entries.py':
-                                print('test: ', _root, _dir, _filename)
-
                             for file_type in self.data['file_type']:
                                 if file_type in _filename:
                                     files.append(
