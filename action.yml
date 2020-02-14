@@ -9,14 +9,14 @@ inputs:
 
   FileType:
     description: Type of files(extension) for which copyright notice has to be added in the given file path
-    requried: false
+    requried: true
 
   # Optional
-  FilePath:
+  Path:
     description: Path in which copyright notice has to be added to files
     requried: false
 
-  IgnoreFilePath:
+  IgnorePath:
     description: Path ignored without adding copyright notice
     requried: false
 runs:

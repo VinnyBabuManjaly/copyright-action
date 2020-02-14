@@ -1,11 +1,12 @@
 '''
     File name: copyright_insert.py
     Author: Vinny Babu Manjaly
-    Date created: 2/2/2020
-    Date last modified: 2/12/2020
-    Python Version: 3.7
 '''
 import os
+import sys
+
+if sys.version_info[0] < 3:
+    raise Exception('Python 3 or a more recent version is required.')
 
 
 class InsertCopyRight:
@@ -22,16 +23,16 @@ class InsertCopyRight:
             self.data['file_type'] = os.environ['INPUT_FILETYPE'].replace(
                 ' ', '',
             ).split(',')
-            if not os.environ['INPUT_FILEPATH']:
-                self.data['file_path'] = ['.']
+            if not os.environ['INPUT_PATH']:
+                self.data['path'] = ['.']
             else:
-                self.data['file_path'] = os.environ['INPUT_FILEPATH'].replace(
+                self.data['path'] = os.environ['INPUT_PATH'].replace(
                     ' ', '',
                 ).split(',')
-            if not os.environ['INPUT_IGNOREFILEPATH']:
-                self.data['ignore_file_path'] = None
+            if not os.environ['INPUT_IGNOREPATH']:
+                self.data['ignore_path'] = None
             else:
-                self.data['ignore_file_path'] = os.environ['INPUT_IGNOREFILEPATH'].replace(
+                self.data['ignore_path'] = os.environ['INPUT_IGNOREPATH'].replace(
                     ' ', '',
                 ).split(',')
 
@@ -43,26 +44,19 @@ class InsertCopyRight:
         Getting all the required files from the directory
         Checking in filename, for file extensions already specified
         Appending to the list "files", all the files to which copyright have to be merged
-        :return:
         '''
         try:
             files = []
             _value = False
-            for _path in self.data['file_path']:
+            for _path in self.data['path']:
                 for _root, _dir, _files in os.walk(_path):
-                    if self.data['ignore_file_path'] is not None:
-                        for _ignore_path in self.data['ignore_file_path']:
+                    if self.data['ignore_path'] is not None:
+                        for _ignore_path in self.data['ignore_path']:
                             if _ignore_path in _root or (_path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/'):
                                 _value = True
                                 break
                             else:
                                 _value = False
-                            # elif _ignore_path not in _root:
-                            #     _value = False
-                            # else:
-                            #     # print('Ignoring file path ', _root)
-                            #     _value = True
-                            #     break
                     if _value is False:
                         for _filename in _files:
                             for file_type in self.data['file_type']:
@@ -140,7 +134,6 @@ def main():
     try:
         obj = InsertCopyRight()
         files = obj.listing_files()
-        # print('List of files to be checked for copyright notice:\n', files)
         if files:
             obj.content_check(files)
     except Exception as e:
