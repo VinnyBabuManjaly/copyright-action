@@ -13,7 +13,7 @@ inputs:
 
   # Optional
   FilePath:
-    description: Path in which copyright notice has to be added to the files
+    description: Path in which copyright notice has to be added to files
     requried: false
 
   IgnoreFilePath:
