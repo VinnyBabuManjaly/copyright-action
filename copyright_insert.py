@@ -59,10 +59,11 @@ class InsertCopyRight:
                                     _root, _files,
                                 )
 
-                            if _path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/':
+                            if _ignore_path not in _root:
                                 _value = False
-                            elif _ignore_path not in _root:
+                            elif _path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/':
                                 _value = False
+                                break
                             else:
                                 # print('Ignoring file path ', _root)
                                 _value = True
