@@ -52,7 +52,8 @@ class InsertCopyRight:
                 for _root, _dir, _files in os.walk(_path):
                     if self.data['ignore_path'] is not None:
                         for _ignore_path in self.data['ignore_path']:
-                            if _ignore_path in _root or (_path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/'):
+                            if (_ignore_path in _root) or (_ignore_path in _root + '/') or\
+                                    (_path == '.' and _ignore_path[-1] == '/' and './' + _ignore_path == _root + '/'):
                                 _value = True
                                 break
                             else:
