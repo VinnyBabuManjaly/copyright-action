@@ -136,6 +136,8 @@ def main():
         files = obj.listing_files()
         if files:
             obj.content_check(files)
+        else:
+            print('Wrong directory or no files matching the provided details')
     except Exception as e:
         raise e
 
