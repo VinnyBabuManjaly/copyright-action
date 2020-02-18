@@ -2,6 +2,8 @@
 
 Github Action for automatically inserting copyright notice to the configured directories in a repository and creates a pull request for the same.
 
+Additionally, if the copyright notice is already present in a file/files in configured directories, the action is skipped without modifying the file content. Also, for the empty files the action is skipped. And if a wrong directory is specified in the parameters or no files are found in the specified directory, warning message is displayed in the logs.
+
 ## Usage
 
 Basic:
@@ -32,6 +34,7 @@ See [action.yml](action.yml) for more details.
 | **FileType** (Required) | Type of files(extension) for which copyright notice has to be added in the given file path. | File extensions seperated by ','(comma) in single quotes. | `'.py, .txt'` |
 | **Path** (Optional) | Path in which copyright notice has to be added to files. | Directories ending with or without '/'(slash) seperated by ','(comma) in single quotes. | `'testfolder1/, testfolderb'` |
 | **IgnorePath** (Optional) | Path ignored without adding copyright notice. | Directories ending with or without '/'(slash) seperated by ','(comma) in single quotes. | `'testfolderc/a/, testfolderc/b'` |
+
 
 ## License
 
