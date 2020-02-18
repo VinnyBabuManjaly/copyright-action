@@ -1,5 +1,5 @@
-name: "Insert Copyright notice"
-description: "Insert copyright notice to files in directory"
+name: "Copyright Action"
+description: "Inserting copyright notice to configured files in repository"
 author: "Vinny Babu Manjaly"
 inputs:
   # Required
