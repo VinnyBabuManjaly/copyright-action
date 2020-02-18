@@ -6,7 +6,6 @@ Additionally, if the copyright notice is already present in a file/files in conf
 
 ## Usage
 
-Basic:
 ```yaml
 steps:
   # Checking out the repository which is to be actioned
