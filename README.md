@@ -1,4 +1,4 @@
-# 🚀 Copyright Action
+# Copyright Action
 
 Github Action for automatically inserting copyright notice to the configured directories in a repository and creating a pull request for the same.
 
