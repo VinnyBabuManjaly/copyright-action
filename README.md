@@ -2,7 +2,7 @@
 
 Github Action for automatically inserting copyright notice to the configured directories in a repository and creates a pull request for the same.
 
-Additionally, if the copyright notice is already present in a file/files in configured directories, the action is skipped without modifying the file content. Also, for the empty files the action is skipped. And if a wrong directory is specified in the parameters or no files are found in the specified directory, warning message is displayed in the logs.
+Additionally, if the copyright notice is already present in a file/files in configured directories, the action is skipped without modifying the file content. Also, for the empty files, its skipped. And if wrong directory is specified and no files are found matching, according to the given parameters in any of the specified directories, warning message is displayed in the logs.
 
 ## Usage
 

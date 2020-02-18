@@ -86,9 +86,9 @@ class InsertCopyRight:
                     )
                 else:
                     if self.copyright_check(content):
-                        print('Warning: Copyright already exists in ', _file)
+                        print('WARNING: Copyright already exists in', _file)
                     else:
-                        print('Adding copyright notice as not present in ', _file)
+                        print('Adding copyright notice to', _file)
                         self.insert_copyright(content, file)
         except Exception as e:
             raise e
@@ -138,7 +138,7 @@ def main():
         if files:
             obj.content_check(files)
         else:
-            print('Warning: Wrong directory or no files matching the provided criteria')
+            print('WARNING: Wrong directory or no files matching the provided criteria')
     except Exception as e:
         raise e
 
