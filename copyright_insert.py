@@ -86,7 +86,7 @@ class InsertCopyRight:
                     )
                 else:
                     if self.copyright_check(content):
-                        print('WARNING: Copyright already exists in', _file)
+                        print('Copyright already exists in', _file)
                     else:
                         print('Adding copyright notice to', _file)
                         self.insert_copyright(content, file)
