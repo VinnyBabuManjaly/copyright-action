@@ -1,19 +1,26 @@
 # 🚀 Copyright Action
 
-Github Action for automatically inserting copyright notice to the configured directories in a repository.
+Github Action for automatically inserting copyright notice to the configured directories in a repository and creates a pull request for the same.
 
 ## Usage
 
 Basic:
 ```yaml
 steps:
-- uses: actions/checkout@v2
-- uses: VinnyBabuManjaly/copyright-action@master
-  with:
-    CopyrightString: 'Copyright check\nAll rights reserved (c)\n'
-    FileType: '.py, .txt'
-    Path: 'testfolder1/, testfolderb'
-    IgnorePath: 'testfolderc/a/, testfolderc/b'
+  # Checking out the repository which is to be actioned
+  - uses: actions/checkout@v2
+  # Implementing action on repository
+  - uses: VinnyBabuManjaly/copyright-action@master
+    with:
+      CopyrightString: 'Copyright check\nAll rights reserved (c)\n'
+      FileType: '.py, .txt'
+      Path: 'testfolder1/, testfolderb'
+      IgnorePath: 'testfolderc/a/, testfolderc/b'
+   # Creates pull request with all changes in file
+  - name: Create Pull Request
+    uses: peter-evans/create-pull-request@v2
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
 ```
 See [action.yml](action.yml) for more details.
 
