@@ -1,8 +1,9 @@
 name: "Copyright Action"
 description: "Inserting copyright notice to configured files in repository"
 author: "Vinny Babu Manjaly"
-icon: "edit"
-color: "gray-dark"
+branding:
+  icon: "edit"
+  color: "gray-dark"
 inputs:
   # Required
   CopyrightString:
