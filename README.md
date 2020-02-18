@@ -7,6 +7,7 @@ Github Action for automatically inserting copyright notice to the configured dir
 Basic:
 ```yaml
 steps:
+- uses: actions/checkout@v2
 - uses: VinnyBabuManjaly/copyright-action@master
   with:
     CopyrightString: 'Copyright check\nAll rights reserved (c)\n'
