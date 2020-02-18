@@ -1,6 +1,9 @@
-name: "Insert Copyright notice"
-description: "Insert copyright notice to files in directory"
+name: "Copyright Action"
+description: "Inserts copyright notice to configured files in repository and creates a pull request"
 author: "Vinny Babu Manjaly"
+branding:
+  icon: "edit"
+  color: "gray-dark"
 inputs:
   # Required
   CopyrightString:

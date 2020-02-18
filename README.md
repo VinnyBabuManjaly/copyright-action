@@ -11,7 +11,7 @@ steps:
   # Checking out the repository which is to be actioned
   - uses: actions/checkout@v2
   # Implementing action on repository
-  - uses: VinnyBabuManjaly/copyright-action@master
+  - uses: VinnyBabuManjaly/copyright-action@@v1.0.0
     with:
       CopyrightString: 'Copyright check\nAll rights reserved (c)\n'
       FileType: '.py, .txt'
