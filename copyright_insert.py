@@ -82,13 +82,13 @@ class InsertCopyRight:
                 content = file.readlines()
                 if not content:
                     print(
-                        _file, 'is an empty file, hence not adding the copyright or license to the file',
+                        _file, 'found to be empty and copyright not added to the file',
                     )
                 else:
                     if self.copyright_check(content):
-                        print('License string already exists in ', _file)
+                        print('Copyright already exists in ', _file)
                     else:
-                        print('Adding license string as not present in ', _file)
+                        print('Adding copyright notice as not present in ', _file)
                         self.insert_copyright(content, file)
         except Exception as e:
             raise e
@@ -138,7 +138,7 @@ def main():
         if files:
             obj.content_check(files)
         else:
-            print('Wrong directory or no files matching the provided details')
+            print('INFO: Wrong directory or no files matching the provided criterias')
     except Exception as e:
         raise e
 
